@@ -1,0 +1,177 @@
+/* Global Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7fa;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main container */
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Heading */
+h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Feedback count */
+p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+/* Input and Button Container */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+input, textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Buttons */
+button {
+  padding: 12px;
+  background: #1f7a8c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #14525f;
+}
+
+/* Table Styles */
+.project-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+.project-table th,
+.project-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.project-table th {
+  background-color: #1f7a8c;
+  color: white;
+}
+
+.project-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: #e74c3c;
+  padding: 6px 12px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}
+
+/* Clear Button */
+.clear-btn {
+  background: #ffb200;
+  padding: 10px 16px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.clear-btn:hover {
+  background: #d99400;
+}
+
+/* 🌙 Dark Mode Styles */
+.container.dark {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.container.dark input,
+.container.dark textarea {
+  background-color: #2e2e2e;
+  color: #ffffff;
+  border: 1px solid #555;
+}
+
+.container.dark .project-table th {
+  background-color: #333;
+}
+
+.container.dark .project-table td {
+  background-color: #2a2a2a;
+}
+
+.container.dark .delete-btn,
+.container.dark .clear-btn,
+.container.dark button {
+  background-color: #0e4d4f;
+}
+
+.container.dark .delete-btn:hover,
+.container.dark .clear-btn:hover,
+.container.dark button:hover {
+  background-color: #083c3d;
+}
+
+/* Toggle Mode Button */
+.toggle-mode {
+  background-color: #0c5658;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.toggle-mode:hover {
+  background-color: #083c3d;
+}
+.container.dark h1,
+.container.dark p {
+  color: #ffffff;
+}
