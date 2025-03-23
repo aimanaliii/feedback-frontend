@@ -7,36 +7,36 @@ import './App.css';
 const API_URL = process.env.REACT_APP_API_URL;
 
 function App() {
-    const [feedbacks, setFeedbacks] = useState([]);
-    const [name, setName] = useState("");
-    const [message, setMessage] = useState("");
+    const [projects, setProjects] = useState([]);
+    const [owner, setOwner] = useState("");
+    const [projectName, setProjectName] = useState("");
     const [count, setCount] = useState(0);
-    const [darkMode, setDarkMode] = useState(false); // New state
+    const [darkMode, setDarkMode] = useState(false);
 
-    const fetchFeedbacks = async () => {
+    const fetchProjects = async () => {
         try {
             const response = await axios.get(API_URL);
-            setFeedbacks(response.data.feedbacks);
+            setProjects(response.data.projects);
 
             const countResponse = await axios.get(`${API_URL}/count`);
             setCount(countResponse.data.count);
         } catch (err) {
-            console.error("Error fetching feedbacks:", err);
-            toast.error("Failed to fetch feedbacks");
+            console.error("Error fetching projects:", err);
+            toast.error("Failed to fetch projects");
         }
     };
 
     useEffect(() => {
-        fetchFeedbacks();
+        fetchProjects();
     }, []);
 
-    const submitFeedback = async () => {
+    const submitProject = async () => {
         try {
-            const response = await axios.post(API_URL, { name, message });
-            setFeedbacks([...feedbacks, response.data.feedback]);
-            setName("");
-            setMessage("");
-            toast.success("Feedback submitted!");
+            const response = await axios.post(API_URL, { name: owner, message: projectName });
+            setProjects([...projects, response.data.project]);
+            setOwner("");
+            setProjectName("");
+            toast.success("Project added!");
             setCount(prevCount => prevCount + 1);
         } catch (err) {
             console.error("Submit Error:", err.response?.data || err.message);
@@ -44,27 +44,27 @@ function App() {
         }
     };
 
-    const deleteFeedback = async (id) => {
+    const deleteProject = async (id) => {
         try {
             await axios.delete(`${API_URL}/${id}`);
-            setFeedbacks(feedbacks.filter(f => f.id !== id));
-            toast.success("Feedback deleted");
+            setProjects(projects.filter(p => p.id !== id));
+            toast.success("Project deleted");
             setCount(prev => prev - 1);
         } catch (err) {
-            console.error("Error deleting feedback:", err);
-            toast.error("Could not delete feedback");
+            console.error("Error deleting project:", err);
+            toast.error("Could not delete project");
         }
     };
 
-    const clearFeedbacks = async () => {
+    const clearProjects = async () => {
         try {
             await axios.delete(API_URL);
-            setFeedbacks([]);
+            setProjects([]);
             setCount(0);
-            toast.success("All feedbacks cleared");
+            toast.success("All projects cleared");
         } catch (err) {
-            console.error("Error deleting all feedbacks:", err);
-            toast.error("Could not clear feedbacks");
+            console.error("Error deleting all projects:", err);
+            toast.error("Could not clear projects");
         }
     };
 
@@ -74,48 +74,47 @@ function App() {
                 {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
             </button>
 
-            <h1>Feedback Collector</h1>
-            <p>Total Feedbacks: {count}</p>
+            <h1>Project Manager</h1>
+            <p>Total Projects: {count}</p>
 
             <div className="input-container">
                 <input
                     type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={owner}
+                    onChange={(e) => setOwner(e.target.value)}
                     placeholder="Your Name"
                 />
                 <textarea
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Your Message"
+                    value={projectName}
+                    onChange={(e) => setProjectName(e.target.value)}
+                    placeholder="Your Project Name"
                 />
-                <button onClick={submitFeedback}>Submit Feedback</button>
+                <button onClick={submitProject}>Add Project</button>
             </div>
 
             <table className="project-table">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Message</th>
+                        <th>Project</th>
                         <th>Remove</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {feedbacks.map((feedback) => (
-                        <tr key={feedback.id}>
-                            <td>{feedback.name}</td>
-                            <td>{feedback.message}</td>
+                    {projects.map((project) => (
+                        <tr key={project.id}>
+                            <td>{project.name}</td>
+                            <td>{project.message}</td>
                             <td>
-                                <button className="delete-btn" onClick={() => deleteFeedback(feedback.id)}>Delete</button>
+                                <button className="delete-btn" onClick={() => deleteProject(project.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
 
-            <button className="clear-btn" onClick={clearFeedbacks}>Delete All Feedbacks</button>
+            <button className="clear-btn" onClick={clearProjects}>Delete All Projects</button>
 
-            {/* Toast Notifications Container */}
             <ToastContainer position="top-center" autoClose={3000} />
         </div>
     );
