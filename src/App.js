@@ -74,7 +74,7 @@ function App() {
                 {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
             </button>
 
-            <h1>Feedback Collector List</h1>
+            <h1>Feedback Collector</h1>
             <p>Total Feedbacks: {count}</p>
 
             <div className="input-container">
