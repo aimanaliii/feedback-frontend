@@ -4,14 +4,14 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
-const API_URL = "http://127.0.0.1:5000/api/feedbacks";
+const API_URL = process.env.REACT_APP_API_URL;
 
 function App() {
     const [feedbacks, setFeedbacks] = useState([]);
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
     const [count, setCount] = useState(0);
-    const [darkMode, setDarkMode] = useState(false); // 🌙 New state
+    const [darkMode, setDarkMode] = useState(false); // New state
 
     const fetchFeedbacks = async () => {
         try {
@@ -74,7 +74,7 @@ function App() {
                 {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
             </button>
 
-            <h1>Feedback Collector</h1>
+            <h1>Feedback Collector List</h1>
             <p>Total Feedbacks: {count}</p>
 
             <div className="input-container">
